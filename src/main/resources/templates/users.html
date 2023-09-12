@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список пользователей</title>
+</head>
+<body>
+<h1>Список пользователей</h1>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Адрес</th>
+        <th>Email</th>
+    </tr>
+    <!-- Используем Thymeleaf для итерации по списку пользователей -->
+    <tr th:each="user : ${allUsers}">
+        <th th:text="${user.id}"></th>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
+        <td th:text="${user.getEmail()}"></td>
+
+        <td>
+       <!-- Кнопка Edit -->
+        <a th:href="@{/users/edit/{id}(id=${user.id})}">
+            <button>Редактировать</button>
+        </a>
+
+        <a th:href="@{/users/delete/{id}(id=${user.id})}">
+            <button >Удалить</button>
+        </a>
+        </td>
+          </tr>
+</table>
+<br>
+<a th:href="@{/users/create}">
+    <button >Добавить пользователя</button>
+</a>
+</body>
+</html>
